@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="textEditorApp">
+<head>
+  <title>Simple Text Editor</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    .editor-container {
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    textarea {
+      width: 100%;
+      height: 200px; /* Adjust as needed */
+      border: none; /* Remove default textarea border if desired */
+      padding: 5px;
+      box-sizing: border-box; /* Prevent padding from increasing width */
+      font-family: monospace; /* Optional: Use a monospace font */
+    }
+  </style>
+</head>
+<body>
+
+<div ng-controller="TextEditorController">
+  <div class="editor-container">
+    <textarea ng-model="text" placeholder="Enter your text here..."></textarea>
+  </div>
+
+  <button ng-click="saveText()">Save Text</button>
+  <pre>{{savedText}}</pre>  </div>
+
+<script>
+  angular.module('textEditorApp', [])
+    .controller('TextEditorController', function($scope) {
+      $scope.text = ""; // Initialize the text variable
+      $scope.savedText = ""; // Initialize saved text
+
+      $scope.saveText = function() {
+        $scope.savedText = $scope.text; // Store the current text
+        // You can add additional save logic here (e.g., sending to a server)
+        alert("Text saved!"); // Simple alert for demonstration
+      };
+    });
+</script>
+
+</body>
+</html>
